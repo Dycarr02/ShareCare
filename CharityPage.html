@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShareCare – Charity Dashboard</title>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --primary: #2563eb;
+      --text-main: #0f172a;
+      --text-muted: #6b7280;
+      --card-bg: #ffffff;
+      --shadow-soft: 0 18px 35px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #e0f2fe, #f4f7fb 45%);
+      min-height: 100vh;
+      color: var(--text-main);
+    }
+
+    .page-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+    }
+
+    .logo-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .logo-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .logo-tag span.icon {
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.8rem;
+    }
+
+    .back-link {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--text-muted);
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow-soft);
+      padding: 1.7rem 1.5rem 1.9rem;
+      margin-bottom: 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .small-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .action-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .action-link {
+      text-decoration: none;
+      padding: 0.65rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--primary);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .action-link:hover {
+      background: rgba(37, 99, 235, 0.14);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 720px) {
+      .two-col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .stat {
+      padding: 1rem 1.1rem;
+      border-radius: 1.2rem;
+      background: rgba(15, 23, 42, 0.03);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+
+    .stat .label {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat .value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .submit-btn {
+      margin-top: 0.4rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: none;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--primary);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      text-decoration: none;
+    }
+
+    .submit-btn:hover {
+      filter: brightness(1.05);
+    }
+
+    .logout {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .logout a {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .logout a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrap">
+    <header>
+      <div class="logo-row">
+        <div class="logo-tag">
+          <span class="icon">❤</span>
+          <span>ShareCare</span>
+        </div>
+        <a href="index.html" class="back-link">Log out</a>
+      </div>
+
+      <h1>Charity Dashboard</h1>
+      <p>
+        Manage your requests, view incoming donations, and update your charity profile.
+      </p>
+    </header>
+
+    <section class="card" aria-label="Charity overview">
+      <h2>Overview</h2>
+      <p class="small-note">Quick snapshot of your current activity.</p>
+
+      <div class="two-col">
+        <div class="stat">
+          <div class="label">Active requests</div>
+          <div class="value">3</div>
+        </div>
+
+        <div class="stat">
+          <div class="label">Fulfilled requests</div>
+          <div class="value">12</div>
+        </div>
+
+        <div class="stat">
+          <div class="label">Incoming donations</div>
+          <div class="value">2</div>
+        </div>
+
+        <div class="stat">
+          <div class="label">Last update</div>
+          <div class="value">Today</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Charity actions">
+      <h2>Your actions</h2>
+      <p class="small-note">
+        Select an option to continue.
+      </p>
+
+      <ul class="action-list">
+  <li>
+    <a class="action-link" href="manage_incoming_requests.php">
+      Manage incoming requests <span>→</span>
+    </a>
+  </li>
+
+  <li>
+    <a class="action-link" href="manage_outgoing_requests.php">
+      Manage outgoing requests <span>→</span>
+    </a>
+  </li>
+</ul>
+    </section>
+
+    <div class="logout">
+      <a href="index.html">Sign out of your account</a>
+    </div>
+  </div>
+</body>
+</html>

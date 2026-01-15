@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShareCare – Recipient Dashboard</title>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --primary: #dc2626;
+      --text-main: #0f172a;
+      --text-muted: #6b7280;
+      --card-bg: #ffffff;
+      --shadow-soft: 0 18px 35px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #fecaca, #f4f7fb 45%);
+      min-height: 100vh;
+      color: var(--text-main);
+    }
+
+    .page-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+    }
+
+    .logo-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .logo-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(220, 38, 38, 0.08);
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .logo-tag span.icon {
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.8rem;
+    }
+
+    .back-link {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--text-muted);
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow-soft);
+      padding: 1.7rem 1.5rem 1.9rem;
+      margin-bottom: 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .small-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+    }
+
+    /* Dashboard action list (same vibe as your buttons) */
+    .action-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 0.4rem;
+    }
+
+    .action-link {
+      text-decoration: none;
+      padding: 0.65rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(220, 38, 38, 0.08);
+      color: var(--primary);
+      font-weight: 600;
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .action-link:hover {
+      background: rgba(220, 38, 38, 0.14);
+    }
+
+    .submit-btn {
+      margin-top: 0.4rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: none;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--primary);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      text-decoration: none;
+    }
+
+    .submit-btn:hover {
+      filter: brightness(1.05);
+    }
+
+    .logout {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .logout a {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .logout a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrap">
+
+    <header>
+      <div class="logo-row">
+        <div class="logo-tag">
+          <span class="icon">❤</span>
+          <span>ShareCare</span>
+        </div>
+        <a href="index.html" class="back-link">Log out</a>
+      </div>
+
+      <h1>Recipient Dashboard</h1>
+      <p>
+        View available support, track requests, and manage your account.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>Make a donation</h2>
+      <p class="small-note">
+        Select where your donation is going, then add one or more items to your donation list.
+      </p>
+
+      <!-- Destination (MULTI-SELECT) -->
+      <div style="margin-bottom: 1.2rem;">
+        <label for="destination" style="font-weight: 500; margin-bottom: 0.35rem; display:block;">
+          Select where your donation is going
+        </label>
+
+        <select id="destination" multiple size="6" required
+          style="width:100%; padding:0.55rem 0.65rem; border-radius:0.85rem; border:1px solid #d1d5db; font:inherit;">
+          <option value="Antrim">Antrim</option>
+          <option value="Down">Down</option>
+          <option value="Fermanagh">Fermanagh</option>
+          <option value="Derry/Londonderry">Derry/Londonderry</option>
+          <option value="Armagh">Armagh</option>
+          <option value="Tyrone">Tyrone</option>
+        </select>
+
+        <p class="small-note">Hold Ctrl / ⌘ to select multiple locations.</p>
+      </div>
+
+      <!-- Donation items table -->
+      <form id="donationForm">
+        <div style="overflow-x:auto; border-radius:1rem;">
+          <table style="width:100%; border-collapse:separate; border-spacing:0; overflow:hidden;">
+            <thead>
+              <tr style="background: rgba(22, 163, 74, 0.08);">
+                <th style="text-align:left; padding:0.75rem 0.8rem; font-size:0.9rem;">Item</th>
+                <th style="text-align:left; padding:0.75rem 0.8rem; font-size:0.9rem;">Item type</th>
+                <th style="text-align:left; padding:0.75rem 0.8rem; font-size:0.9rem;">Amount</th>
+                <th style="text-align:left; padding:0.75rem 0.8rem; font-size:0.9rem;">Remove</th>
+              </tr>
+            </thead>
+
+            <tbody id="itemsBody">
+              <!-- rows inserted by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:flex; gap:0.6rem; margin-top:1rem; flex-wrap:wrap;">
+          <button type="button" id="addRowBtn" class="submit-btn" style="background: rgba(22,163,74,0.12); color: var(--primary);">
+            + Add row
+          </button>
+
+          <button type="submit" class="submit-btn">
+            Submit donation <span class="arrow">→</span>
+          </button>
+        </div>
+
+        <p id="formError" class="small-note" style="color:#b91c1c; display:none; margin-top:0.7rem;">
+          Please select at least one destination and complete all item rows.
+        </p>
+      </form>
+    </section>
+
+    <script>
+      const itemOptions = [
+        "Proteins",
+        "Carbohydrates",
+        "Fruit",
+        "Vegetables",
+        "Soups",
+        "Cooking Essentials",
+        "Beverages & Snacks"
+      ];
+
+      const typeOptions = ["Shelf-Stable", "Chilled", "Frozen"];
+
+      const itemsBody = document.getElementById("itemsBody");
+      const addRowBtn = document.getElementById("addRowBtn");
+      const donationForm = document.getElementById("donationForm");
+      const destinationEl = document.getElementById("destination");
+      const formError = document.getElementById("formError");
+
+      function makeSelect(options, name, required = true) {
+        const select = document.createElement("select");
+        select.name = name;
+        select.required = required;
+        select.style.width = "100%";
+        select.style.padding = "0.55rem 0.65rem";
+        select.style.borderRadius = "0.85rem";
+        select.style.border = "1px solid #d1d5db";
+        select.style.font = "inherit";
+
+        const placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "Select…";
+        placeholder.disabled = true;
+        placeholder.selected = true;
+        select.appendChild(placeholder);
+
+        for (const opt of options) {
+          const o = document.createElement("option");
+          o.value = opt;
+          o.textContent = opt;
+          select.appendChild(o);
+        }
+        return select;
+      }
+
+      function addRow() {
+        const tr = document.createElement("tr");
+        tr.style.background = "#ffffff";
+
+        const tdItem = document.createElement("td");
+        tdItem.style.padding = "0.7rem 0.8rem";
+        tdItem.appendChild(makeSelect(itemOptions, "item[]"));
+
+        const tdType = document.createElement("td");
+        tdType.style.padding = "0.7rem 0.8rem";
+        tdType.appendChild(makeSelect(typeOptions, "item_type[]"));
+
+        const tdAmount = document.createElement("td");
+        tdAmount.style.padding = "0.7rem 0.8rem";
+        const amount = document.createElement("input");
+        amount.type = "number";
+        amount.name = "amount[]";
+        amount.min = "1";
+        amount.step = "1";
+        amount.required = true;
+        amount.placeholder = "e.g. 10";
+        amount.style.width = "100%";
+        amount.style.padding = "0.55rem 0.65rem";
+        amount.style.borderRadius = "0.85rem";
+        amount.style.border = "1px solid #d1d5db";
+        amount.style.font = "inherit";
+        tdAmount.appendChild(amount);
+
+        const tdRemove = document.createElement("td");
+        tdRemove.style.padding = "0.7rem 0.8rem";
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.textContent = "Remove";
+        removeBtn.style.border = "none";
+        removeBtn.style.background = "transparent";
+        removeBtn.style.color = "#6b7280";
+        removeBtn.style.cursor = "pointer";
+        removeBtn.onclick = () => {
+          tr.remove();
+          if (itemsBody.children.length === 0) addRow();
+        };
+        tdRemove.appendChild(removeBtn);
+
+        tr.appendChild(tdItem);
+        tr.appendChild(tdType);
+        tr.appendChild(tdAmount);
+        tr.appendChild(tdRemove);
+
+        itemsBody.appendChild(tr);
+      }
+
+      addRowBtn.addEventListener("click", addRow);
+
+      donationForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        formError.style.display = "none";
+
+        const destinations = [...destinationEl.selectedOptions].map(o => o.value);
+        if (destinations.length === 0) {
+          formError.style.display = "block";
+          return;
+        }
+
+        const rows = [...itemsBody.querySelectorAll("tr")];
+        const items = rows.map((tr) => {
+          const selects = tr.querySelectorAll("select");
+          const amount = tr.querySelector("input[type='number']");
+          return {
+            item: selects[0].value,
+            itemType: selects[1].value,
+            amount: Number(amount.value)
+          };
+        });
+
+        const valid = items.length > 0 && items.every(i => i.item && i.itemType && i.amount > 0);
+        if (!valid) {
+          formError.style.display = "block";
+          return;
+        }
+
+        const payload = { destinations, items };
+        console.log("Donation payload:", payload);
+
+        alert("Donation submitted (demo). Check console for payload.");
+        donationForm.reset();
+        itemsBody.innerHTML = "";
+        addRow();
+      });
+
+      addRow();
+    </script>
+
+    <div class="logout">
+      <a href="index.html">Sign out of your account</a>
+    </div>
+
+  </div>
+</body>
+</html>
